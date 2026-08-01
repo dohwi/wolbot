@@ -1,0 +1,9 @@
+services:
+  wolbot:
+    container_name: wolbot
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      # ponytail: WOL 항목을 컨테이너 재시작에도 유지.
+      - ./wol.json:/app/wol.json
