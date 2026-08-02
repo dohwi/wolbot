@@ -17,7 +17,7 @@ export const handleButton = async (i: ButtonInteraction): Promise<void> => {
     const db = await readDB();
     const item = db.find((x) => x.name === name);
     if (!item) {
-      await i.reply({ content: `${name} 항목을 찾을 수 없어.`, flags: MessageFlags.Ephemeral });
+      await i.reply({ content: `${name} 항목을 찾을 수 없습니다.`, flags: MessageFlags.Ephemeral });
       return;
     }
     await i.reply({
@@ -40,7 +40,7 @@ export const handleButton = async (i: ButtonInteraction): Promise<void> => {
     const db = await readDB();
     const item = db.find((x) => x.name === name);
     if (!item) {
-      await i.update({ content: `${name} 항목을 찾을 수 없어.`, components: [] });
+      await i.update({ content: `${name} 항목을 찾을 수 없습니다.`, components: [] });
       return;
     }
     await i.update({ content: `⏳ ${name} 매직패킷 전송 중... (0/3)`, components: [] });
@@ -57,6 +57,6 @@ export const handleButton = async (i: ButtonInteraction): Promise<void> => {
 
   // 2차 검증 취소
   if (i.customId === 'wol-cancel') {
-    await i.update({ content: '취소됐어.', components: [] });
+    await i.update({ content: '취소됐습니다.', components: [] });
   }
 };

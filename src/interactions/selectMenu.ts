@@ -7,7 +7,7 @@ export const handleSelectMenu = async (i: StringSelectMenuInteraction): Promise<
   const db = await readDB();
   const next = db.filter((x) => x.name !== name);
   if (next.length === db.length) {
-    await i.update({ content: `${name} 항목이 없어.`, components: [] });
+    await i.update({ content: `${name} 항목이 없습니다.`, components: [] });
     return;
   }
   await writeDB(next);

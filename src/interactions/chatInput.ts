@@ -45,7 +45,7 @@ export const handleRemove = async (i: ChatInputCommandInteraction): Promise<void
   if (!(await authorized(i))) return;
   const db = await readDB();
   if (!db.length) {
-    await i.reply({ content: 'WOL 항목이 없어.', flags: MessageFlags.Ephemeral });
+    await i.reply({ content: 'WOL 항목이 없습니다.', flags: MessageFlags.Ephemeral });
     return;
   }
   const select = new StringSelectMenuBuilder()
@@ -53,7 +53,7 @@ export const handleRemove = async (i: ChatInputCommandInteraction): Promise<void
     .setPlaceholder('제거할 항목 선택')
     .addOptions(db.map((x) => ({ label: x.name, value: x.name, description: x.mac })));
   await i.reply({
-    content: '제거할 항목을 선택해.',
+    content: '제거할 항목을 선택해 주세요.',
     components: [new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(select)],
     flags: MessageFlags.Ephemeral,
   });
@@ -63,7 +63,7 @@ export const handleList = async (i: ChatInputCommandInteraction): Promise<void> 
   if (!(await authorized(i))) return;
   const db = await readDB();
   if (!db.length) {
-    await i.reply({ content: 'WOL 항목이 없어.', flags: MessageFlags.Ephemeral });
+    await i.reply({ content: 'WOL 항목이 없습니다.', flags: MessageFlags.Ephemeral });
     return;
   }
   const container = new ContainerBuilder()
@@ -83,7 +83,7 @@ export const handleMakeButton = async (i: ChatInputCommandInteraction): Promise<
   if (!(await authorized(i))) return;
   const db = await readDB();
   if (!db.length) {
-    await i.reply({ content: 'WOL 항목이 없어. 먼저 /wol-add 로 추가해.', flags: MessageFlags.Ephemeral });
+    await i.reply({ content: 'WOL 항목이 없습니다. 먼저 /wol-add 로 추가해 주세요.', flags: MessageFlags.Ephemeral });
     return;
   }
   const container = new ContainerBuilder()

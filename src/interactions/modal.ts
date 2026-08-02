@@ -6,12 +6,12 @@ export const handleModalSubmit = async (i: ModalSubmitInteraction): Promise<void
   const name = i.fields.getTextInputValue('name').trim();
   const mac = i.fields.getTextInputValue('mac').trim();
   if (!MAC_RE.test(mac)) {
-    await i.reply({ content: 'MAC 주소 형식이 잘못됐어. 예: AA:BB:CC:DD:EE:FF', flags: MessageFlags.Ephemeral });
+    await i.reply({ content: 'MAC 주소 형식이 잘못됐습니다. 예: AA:BB:CC:DD:EE:FF', flags: MessageFlags.Ephemeral });
     return;
   }
   const db = await readDB();
   if (db.some((x) => x.name === name)) {
-    await i.reply({ content: `이미 ${name} 항목이 있어.`, flags: MessageFlags.Ephemeral });
+    await i.reply({ content: `이미 ${name} 항목이 있습니다.`, flags: MessageFlags.Ephemeral });
     return;
   }
   db.push({ name, mac: normMac(mac) });

@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 const required = (key: string): string => {
   const v = process.env[key];
-  if (!v) throw new Error(`환경변수 ${key} 가 없어.`);
+  if (!v) throw new Error(`환경변수 ${key} 가 없습니다.`);
   return v;
 };
 
