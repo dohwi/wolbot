@@ -1,39 +1,48 @@
 # wolbot
 
-Discord WOL(Wake-on-LAN) 봇. 컴포넌트 v2로 버튼 UI 제공, 2차 검증으로 안전하게 PC 켜기.
+> Discord 컴포넌트 v2(Buttons, Modals) 기반의 원격 PC 전원 관리(Wake-on-LAN) 봇입니다.  
+> 2차 확인 모달 팝업을 통해 오작동 없이 안전하게 전원을 켭니다.
 
-## 명령어
+---
 
-| 명령어 | 설명 |
-|---|---|
-| `/wol-add` | WOL 항목 추가 (모달 팝업: 이름 + MAC) |
-| `/wol-remove` | WOL 항목 제거 (드롭다운에서 선택) |
-| `/wol-list` | WOL 항목 목록 (컴포넌트 v2) |
-| `/wol-make-button` | WOL 버튼 메시지 생성 (컴포넌트 v2) |
+## 🖥 Flow & UI
 
-버튼 클릭 → "PC를 켤까요?" 확인/취소 팝업 → 확인 시 매직패킷 전송.
-
-## 설정
-
-`.env`:
-```
-DISCORD_TOKEN=봇_토큰
-GUILD_ID=길드_ID
-ALLOWED_USERS=유저ID1,유저ID2
+```text
+[WOL 버튼 클릭] ➡️ ["PC를 켤까요?" 2차 확인 팝업] ➡️ [승인 시 Magic Packet 전송]
 ```
 
-## 실행
+---
 
+## 🎮 Slash Commands
+
+| 명령어 | UI 형태 | 설명 |
+|---|---|---|
+| `/wol-make-button` | Button | 전원 켜기 버튼이 포함된 메시지 생성 |
+| `/wol-list` | Component v2 | 등록된 WOL 기기 목록 조회 |
+| `/wol-add` | Modal Pop-up | 새 WOL 기기 등록 (기기명 + MAC 주소 입력) |
+| `/wol-remove` | Select Menu | 등록된 기기 선택 삭제 |
+
+---
+
+## ⚙️ Environment Variables
+
+```env
+DISCORD_TOKEN=your_bot_token
+GUILD_ID=your_guild_id
+ALLOWED_USERS=user_id_1,user_id_2
+```
+
+---
+
+## ⚡ Run
+
+### Local
 ```bash
-docker compose up -d
+pnpm install
+pnpm start
 ```
 
-`wol.json`에 WOL 항목 저장. 볼륨 마운트로 컨테이너 재시작에도 유지됨.
-
-## 개발
-
+### Docker
 ```bash
-npm install
-npm run build    # tsc
-npm start        # node dist/index.js
+docker compose up -d --build
 ```
